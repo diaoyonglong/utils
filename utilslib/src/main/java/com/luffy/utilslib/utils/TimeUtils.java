@@ -125,6 +125,41 @@ public class TimeUtils {
     }
 
     /**
+     * 获取时间
+     *
+     * @param date
+     * @return
+     */
+    public long getTime(Date date) {
+        long timeLong = 0;
+        if (date != null) {
+            timeLong = date.getTime();
+        }
+        return timeLong;
+    }
+
+    /**
+     * 获取时间
+     *
+     * @param time
+     * @return
+     */
+    public long getTime(String time) {
+        long timeLong = 0;
+        if (time != null && !"".equals(time) && time.length() > 0) {
+            try {
+                Date date = DATE_FORMAT_YMD_HMS_1.parse(time);
+                if (date != null) {
+                    timeLong = date.getTime();
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return timeLong;
+    }
+
+    /**
      * 获取当前时间
      *
      * @return
