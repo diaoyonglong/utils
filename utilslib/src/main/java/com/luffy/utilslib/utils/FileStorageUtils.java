@@ -28,19 +28,19 @@ import android.os.Environment;
  * ---10、storage/sdcard/Android/data/包名/files/Ringtones（手机铃声）
  * 2、storage/sdcard/Android/data/包名/cache
  */
-public class StorageUtils {
-    private StorageUtils() {
+public class FileStorageUtils {
+    private FileStorageUtils() {
     }
 
-    public static StorageUtils getInstance() {
-        return StorageUtilsHelper.mStorageUtils;
+    public static FileStorageUtils getInstance() {
+        return FileStorageUtilsHelper.mFileStorageUtils;
     }
 
-    private static class StorageUtilsHelper {
-        private static StorageUtils mStorageUtils;
+    private static class FileStorageUtilsHelper {
+        private static FileStorageUtils mFileStorageUtils;
 
         static {
-            mStorageUtils = new StorageUtils();
+            mFileStorageUtils = new FileStorageUtils();
         }
     }
 

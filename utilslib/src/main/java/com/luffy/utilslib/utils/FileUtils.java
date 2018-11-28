@@ -136,43 +136,6 @@ public class FileUtils {
     }
 
     /**
-     * 文件转化为字节数组
-     */
-    public byte[] getBytesFromFile(File f) {
-        if (f == null) {
-            return null;
-        }
-        try {
-            FileInputStream stream = new FileInputStream(f);
-            ByteArrayOutputStream out = new ByteArrayOutputStream(1000);
-            byte[] b = new byte[1000];
-            int n;
-            while ((n = stream.read(b)) != -1) {
-                out.write(b, 0, n);
-            }
-            stream.close();
-            out.close();
-            return out.toByteArray();
-        } catch (IOException e) {
-        }
-        return null;
-    }
-
-    /**
-     * 从字节数组获取对象
-     *
-     * @EditTime 2007-8-13 上午11:46:34
-     */
-    public Object getObjectFromBytes(byte[] objBytes) throws Exception {
-        if (objBytes == null || objBytes.length == 0) {
-            return null;
-        }
-        ByteArrayInputStream bi = new ByteArrayInputStream(objBytes);
-        ObjectInputStream oi = new ObjectInputStream(bi);
-        return oi.readObject();
-    }
-
-    /**
      * 将内容写入文件
      *
      * @param filePath eg:/mnt/sdcard/demo.txt
@@ -261,29 +224,6 @@ public class FileUtils {
             }
         }
         return charset;
-    }
-
-    /**
-     * 文件转字符串
-     *
-     * @param file
-     * @return
-     */
-    public String fileToString(File file) {
-        String str = "";
-        if (file != null) {
-            try {
-                InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
-                BufferedReader br = new BufferedReader(isr);
-                String mimeTypeLine;
-                while ((mimeTypeLine = br.readLine()) != null) {
-                    str = str + mimeTypeLine;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return str;
     }
 
     /**
