@@ -130,7 +130,7 @@ public class TimeUtils {
      * @param date
      * @return
      */
-    public long getTime(Date date) {
+    public long getTimeLong(Date date) {
         long timeLong = 0;
         if (date != null) {
             timeLong = date.getTime();
@@ -144,11 +144,11 @@ public class TimeUtils {
      * @param time
      * @return
      */
-    public long getTime(String time) {
+    public long getTimeLong(String time, SimpleDateFormat simpleDateFormat) {
         long timeLong = 0;
         if (time != null && !"".equals(time) && time.length() > 0) {
             try {
-                Date date = DATE_FORMAT_YMD_HMS_1.parse(time);
+                Date date = simpleDateFormat.parse(time);
                 if (date != null) {
                     timeLong = date.getTime();
                 }
