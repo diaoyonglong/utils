@@ -33,11 +33,11 @@ public class KeyBoardUtils {
      * 打开软键盘
      *
      * @param context
-     * @param editText
+     * @param view
      */
-    public void openKeyBoard(Context context, EditText editText) {
+    public void openKeyBoard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        mInputMethodManager.showSoftInput(editText, InputMethodManager.RESULT_SHOWN);
+        mInputMethodManager.showSoftInput(view, InputMethodManager.RESULT_SHOWN);
         mInputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
@@ -45,11 +45,11 @@ public class KeyBoardUtils {
      * 关闭软键盘
      *
      * @param context
-     * @param editText
+     * @param view
      */
-    public void closeKeyBoard(Context context, EditText editText) {
+    public void closeKeyBoard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        mInputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     /**
