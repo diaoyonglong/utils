@@ -27,6 +27,8 @@ public class TimeUtils {
     public static final SimpleDateFormat DATE_FORMAT_MD_2 = new SimpleDateFormat("MM/dd");
     public static final SimpleDateFormat DATE_FORMAT_MD_3 = new SimpleDateFormat("MM月dd日");
     public static final SimpleDateFormat DATE_FORMAT_Y = new SimpleDateFormat("yyyy");
+    public static final SimpleDateFormat DATE_FORMAT_M = new SimpleDateFormat("MM");
+    public static final SimpleDateFormat DATE_FORMAT_D = new SimpleDateFormat("dd");
     public static final SimpleDateFormat DATE_FORMAT_HMS = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT_HM = new SimpleDateFormat("HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_MD_HMS_1 = new SimpleDateFormat("MM-dd HH:mm:ss");
