@@ -66,4 +66,44 @@ public class StringUtils {
         }
         return stringList;
     }
+
+    /**
+     * 字符模糊处理（保留首尾，中间用指定字符替换）
+     *
+     * @param str 要处理的字符
+     * @return
+     */
+    public String obscure(String str) {
+        return obscure(str, null);
+    }
+
+    /**
+     * 字符模糊处理（保留首尾，中间用指定字符替换）
+     *
+     * @param str        要处理的字符
+     * @param repacleStr 替换字符（默认是*）
+     * @return
+     */
+    public String obscure(String str, String repacleStr) {
+        if (repacleStr == null || repacleStr.length() == 0 || "".equals(repacleStr)) {
+            repacleStr = "*";
+        }
+        if (str.length() > 2) {
+            String content = "";
+            for (int i = 0; i < str.length(); i++) {
+                content += repacleStr;
+            }
+            str = new StringBuilder(str.length())
+                    .append(str.substring(0, 1))
+                    .append(content)
+                    .append(str.substring(str.length() - 2, str.length() - 1))
+                    .toString();
+        } else if (str.length() == 2) {
+            str = new StringBuilder(str.length())
+                    .append(str.substring(0, 1))
+                    .append("*")
+                    .toString();
+        }
+        return str;
+    }
 }
