@@ -90,13 +90,13 @@ public class StringUtils {
         }
         if (str.length() > 2) {
             String content = "";
-            for (int i = 0; i < str.length(); i++) {
+            for (int i = 1; i < str.length() - 1; i++) {
                 content += repacleStr;
             }
             str = new StringBuilder(str.length())
                     .append(str.substring(0, 1))
                     .append(content)
-                    .append(str.substring(str.length() - 2, str.length() - 1))
+                    .append(str.substring(str.length() - 1, str.length()))
                     .toString();
         } else if (str.length() == 2) {
             str = new StringBuilder(str.length())
