@@ -15,13 +15,13 @@ allprojects {
 二、Module下的build.gradle文件下添加
 
 dependencies {
-	        compile 'com.github.Lvluffy:utils:1.0.7'
+	        compile 'com.github.Lvluffy:utils:1.0.8'
 }
 
 或者
 
 dependencies {
-	        implementation 'com.github.Lvluffy:utils:1.0.7'
+	        implementation 'com.github.Lvluffy:utils:1.0.8'
 }
 
 三、混淆文件
