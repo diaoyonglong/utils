@@ -15,13 +15,13 @@ allprojects {
 二、Module下的build.gradle文件下添加
 
 dependencies {
-	        compile 'com.github.Lvluffy:utils:1.0.0'
+	        compile 'com.github.Lvluffy:utils:1.0.7'
 }
 
 或者
 
 dependencies {
-	        implementation 'com.github.Lvluffy:utils:1.0.0'
+	        implementation 'com.github.Lvluffy:utils:1.0.7'
 }
 
 三、混淆文件
@@ -31,14 +31,21 @@ dependencies {
 -dontwarn sun.misc.**
 
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+
     long producerIndex;
+    
     long consumerIndex;
+    
 }
 
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+
     rx.internal.util.atomic.LinkedQueueNode producerNode;
+    
 }
 
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
+    
 }
