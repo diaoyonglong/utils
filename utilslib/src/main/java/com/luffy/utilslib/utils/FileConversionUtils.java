@@ -2,7 +2,6 @@ package com.luffy.utilslib.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.provider.MediaStore;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -241,10 +240,48 @@ public class FileConversionUtils {
      * @param file
      * @return
      */
-    public Bitmap file2Bitmap(File file) {
+    public Bitmap file2Bitmap(File file) throws IOException {
         Bitmap bitmap = null;
         if (file != null) {
-            bitmap = string2Bitmap(file.getPath());
+            int IMAGE_MAX_SIZE = 1000;
+
+            //Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+
+            FileInputStream fis = new FileInputStream(file);
+            BitmapFactory.decodeStream(fis, null, o);
+            fis.close();
+
+            int scale = 1;
+            if (o.outHeight > IMAGE_MAX_SIZE || o.outWidth > IMAGE_MAX_SIZE) {
+                scale = (int) Math.pow(2, (int) Math.round(Math.log(IMAGE_MAX_SIZE / (double) Math.max(o.outHeight, o.outWidth)) / Math.log(0.5)));
+            }
+
+            //Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            fis = new FileInputStream(file);
+            bitmap = BitmapFactory.decodeStream(fis, null, o2);
+            fis.close();
+        }
+        return bitmap;
+    }
+
+    /**
+     * File路径转Bitmap
+     *
+     * @param filePath
+     * @return
+     */
+    public Bitmap filePath2Bitmap(String filePath) throws IOException {
+        Bitmap bitmap = null;
+        if (filePath != null) {
+            File file = new File(filePath);
+            if (file == null) {
+                return null;
+            }
+            bitmap = file2Bitmap(file);
         }
         return bitmap;
     }
