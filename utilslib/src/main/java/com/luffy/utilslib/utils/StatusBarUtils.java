@@ -3,6 +3,7 @@ package com.luffy.utilslib.utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class StatusBarUtils {
      * @param activity
      * @param hideStatusBarBackground
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void setStatusBar(Activity activity, boolean hideStatusBarBackground) {
         Window window = activity.getWindow();
         //添加Flag把状态栏设为可绘制模式
@@ -52,6 +54,8 @@ public class StatusBarUtils {
             }
             //设置window的状态栏不可见
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+            //处理导航栏
+            handlerNavigationBar(activity);
         } else {
             //如果为半透明模式，添加设置Window半透明的Flag
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -130,13 +134,14 @@ public class StatusBarUtils {
     }
 
     /**
-     * 处理物理按钮NavigationBar
+     * 处理导航栏
      * <p>
      * 解决：全屏时，由于视图布局会填充到状态栏和导航栏下方，如果不使用android:fitsSystemWindows=”true”属性，就会使底部导航栏和应用底部按钮重叠，导视按钮点击失效。
      *
      * @param mActivity
      */
-    public void handlerNavigationBar(Activity mActivity) {
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void handlerNavigationBar(Activity mActivity) {
         if (ScreenUtils.getInstance().hasNavigationBar(mActivity)) {
             mActivity.getWindow().getDecorView().findViewById(android.R.id.content).setPadding(0, 0, 0, ScreenUtils.getInstance().getNavigationBarHeight(mActivity));
         }
