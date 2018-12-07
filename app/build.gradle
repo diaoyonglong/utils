@@ -37,7 +37,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     /**support*/
     compile 'com.android.support.constraint:constraint-layout:1.1.2'
-    compile 'com.android.support:multidex:1.0.1'
     compile "com.android.support:appcompat-v7:$rootProject.supportVersion"
     /**utilslib*/
     compile project(':utilslib')

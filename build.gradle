@@ -32,13 +32,13 @@ ext {
     //应用ID
     applicationId = "com.luffy.utils"
     //最低支持Android版本
-    minSdkVersion = 14
+    minSdkVersion = 15
     //目标版本
     targetSdkVersion = 27
     //应用程序版本号
-    versionCode = 106
+    versionCode = 107
     //应用程序版本名称
-    versionName = "1.0.6"
+    versionName = "1.0.7"
     /**Dependencies（依赖关系）*/
     supportVersion = "27.0.2"
 }
