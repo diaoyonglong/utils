@@ -61,7 +61,7 @@ public class SystemUtils {
      * @param appPkg    指定应用包名
      * @param marketPkg 指定应用商店包名
      */
-    public static void openAppDetail(Context context, String appPkg, String marketPkg) {
+    public void openAppDetail(Context context, String appPkg, String marketPkg) {
         try {
             if (TextUtils.isEmpty(appPkg))
                 return;
@@ -83,7 +83,7 @@ public class SystemUtils {
      * @param packageName 指定应用包名
      * @return
      */
-    public static boolean isInstall(Context context, String packageName) {
+    public boolean isInstall(Context context, String packageName) {
         /*获取包名管理器*/
         final PackageManager packageManager = context.getPackageManager();
         /*获取所有已安装程序的包信息*/
