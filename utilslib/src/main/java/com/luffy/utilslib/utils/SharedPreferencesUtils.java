@@ -15,7 +15,7 @@ import java.util.Map;
 public class SharedPreferencesUtils {
 
     /*保存在手机里面的文件名*/
-    public static final String FILE_NAME = "share_data";
+    private String FILE_NAME = "share_data";
 
     private SharedPreferencesUtils() {
     }
@@ -30,6 +30,10 @@ public class SharedPreferencesUtils {
         static {
             mSharedPreferencesUtils = new SharedPreferencesUtils();
         }
+    }
+
+    public void init(String fileName) {
+        this.FILE_NAME = fileName;
     }
 
     /**
