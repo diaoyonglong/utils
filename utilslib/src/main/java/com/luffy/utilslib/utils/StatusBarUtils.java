@@ -1,18 +1,14 @@
 package com.luffy.utilslib.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 /**
  * Created by lvlufei on 2018/7/29
@@ -80,44 +76,15 @@ public class StatusBarUtils {
      *
      * @param mActivity
      * @param colorId
-     * @param isDarkColor
      */
     public void setStatusBar(Activity mActivity, int colorId, boolean isDarkColor) {
-        setStatusBar(mActivity, colorId, isDarkColor, false);
-    }
-
-    /**
-     * 设置状态栏
-     *
-     * @param mActivity
-     * @param colorId
-     * @param isDarkColor
-     * @param isDrawable  true-drawable;false-color
-     */
-    public void setStatusBar(Activity mActivity, int colorId, boolean isDarkColor, boolean isDrawable) {
         /*5.0及以上*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = mActivity.getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
             //设置状态栏颜色
-            if (isDrawable) {
-                // 设置状态栏透明
-                mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                // 生成一个状态栏大小的矩形
-                View statusView = createStatusView(mActivity, colorId, isDrawable);
-                // 添加 statusView 到布局中
-                ViewGroup decorView = (ViewGroup) mActivity.getWindow().getDecorView();
-                //在一个界面在来回切换顶部状态栏的时候导致透明度的状态栏不能显示 需remove掉
-                if (decorView.getChildCount() >= 2) {
-                    decorView.removeViewAt(1);
-                }
-                decorView.addView(statusView);
-                // 设置根布局的参数
-                setRootView(mActivity);
-            } else {
-                View decorView = mActivity.getWindow().getDecorView();
-                int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-                decorView.setSystemUiVisibility(option);
-                mActivity.getWindow().setStatusBarColor(mActivity.getResources().getColor(colorId));
-            }
+            setStatusBarColor(mActivity, colorId);
         }
         /*4.4到5.0*/
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -127,6 +94,19 @@ public class StatusBarUtils {
         /*6.0以后可以对状态栏文字颜色和图标进行修改*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setStatusBarIconColor(mActivity, isDarkColor);
+        }
+    }
+
+    /**
+     * 设置状态栏颜色
+     *
+     * @param mActivity
+     * @param colorId
+     */
+    private void setStatusBarColor(Activity mActivity, int colorId) {
+        /*5.0及以上*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mActivity.getWindow().setStatusBarColor(mActivity.getResources().getColor(colorId));
         }
     }
 
@@ -164,56 +144,6 @@ public class StatusBarUtils {
     private void handlerNavigationBar(Activity mActivity) {
         if (ScreenUtils.getInstance().hasNavigationBar(mActivity)) {
             mActivity.getWindow().getDecorView().findViewById(android.R.id.content).setPadding(0, 0, 0, ScreenUtils.getInstance().getNavigationBarHeight(mActivity));
-        }
-    }
-
-    /**
-     * 生成一个状态栏大小的矩形
-     *
-     * @param activity
-     * @param color
-     * @param isDrawable
-     * @return
-     */
-    @SuppressLint("NewApi")
-    private static View createStatusView(Activity activity, int color, boolean isDrawable) {
-        // 绘制一个和状态栏一样高的矩形
-        // 获得状态栏高度
-        // 绘制一个和状态栏一样高的矩形
-        View statusView = new View(activity);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
-        statusView.setLayoutParams(params);
-        if (isDrawable) {
-            statusView.setBackground(ContextCompat.getDrawable(activity, color));
-        } else {
-            statusView.setBackgroundColor(ContextCompat.getColor(activity, color));
-        }
-        return statusView;
-    }
-
-    /**
-     * 获取状态栏高度
-     *
-     * @param context context
-     * @return 状态栏高度
-     */
-    private static int getStatusBarHeight(Context context) {
-        // 获得状态栏高度
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
-    }
-
-    /**
-     * 设置根布局参数
-     */
-    private static void setRootView(Activity activity) {
-        ViewGroup parent = (ViewGroup) activity.findViewById(android.R.id.content);
-        for (int i = 0, count = parent.getChildCount(); i < count; i++) {
-            View childView = parent.getChildAt(i);
-            if (childView instanceof ViewGroup) {
-                childView.setFitsSystemWindows(true);
-                ((ViewGroup) childView).setClipToPadding(true);
-            }
         }
     }
 }
