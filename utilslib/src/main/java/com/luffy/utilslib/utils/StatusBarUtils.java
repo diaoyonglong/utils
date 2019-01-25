@@ -36,8 +36,8 @@ public class StatusBarUtils {
     /**
      * 设置状态栏
      *
-     * @param activity
-     * @param hideStatusBarBackground
+     * @param activity                Activity窗口界面
+     * @param hideStatusBarBackground 隐藏状态栏（true-隐藏；false-显示）
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void setStatusBar(Activity activity, boolean hideStatusBarBackground) {
@@ -74,8 +74,9 @@ public class StatusBarUtils {
     /**
      * 设置状态栏
      *
-     * @param mActivity
-     * @param colorId
+     * @param mActivity   Activity窗口界面
+     * @param colorId     colorId（颜色ID）
+     * @param isDarkColor ture:实现状态栏图标和文字颜色为暗色;false:实现状态栏图标和文字颜色为浅色
      */
     public void setStatusBar(Activity mActivity, int colorId, boolean isDarkColor) {
         /*5.0及以上*/
@@ -98,9 +99,47 @@ public class StatusBarUtils {
     }
 
     /**
+     * 设置状态栏-渐变色
+     *
+     * @param mActivity   Activity窗口界面
+     * @param resid       resourceId（资源ID-渐变色文件）
+     * @param isDarkColor ture:实现状态栏图标和文字颜色为暗色;false:实现状态栏图标和文字颜色为浅色
+     */
+    public void setStatusBarGradient(final Activity mActivity, final int resid, boolean isDarkColor) {
+        /*5.0及以上*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mActivity.getWindow().getDecorView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    View statusBarView = null;
+                    if (statusBarView == null) {
+                        //利用反射机制修改状态栏背景
+                        int identifier = mActivity.getResources().getIdentifier("statusBarBackground", "id", "android");
+                        statusBarView = mActivity.getWindow().findViewById(identifier);
+                    }
+                    if (statusBarView != null) {
+                        statusBarView.setBackgroundResource(resid);
+                    }
+                    mActivity.getWindow().getDecorView().removeOnLayoutChangeListener(this);
+                }
+            });
+        }
+        /*4.4到5.0*/
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WindowManager.LayoutParams layoutParams = mActivity.getWindow().getAttributes();
+            layoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | layoutParams.flags);
+        }
+        /*6.0以后可以对状态栏文字颜色和图标进行修改*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            setStatusBarIconColor(mActivity, isDarkColor);
+        }
+
+    }
+
+    /**
      * 设置状态栏颜色
      *
-     * @param mActivity
+     * @param mActivity Activity窗口界面
      * @param colorId
      */
     private void setStatusBarColor(Activity mActivity, int colorId) {
@@ -113,7 +152,7 @@ public class StatusBarUtils {
     /**
      * 设置状态栏图标和文字颜色
      *
-     * @param mActivity
+     * @param mActivity   Activity窗口界面
      * @param isDarkColor ture:实现状态栏图标和文字颜色为暗色;false:实现状态栏图标和文字颜色为浅色
      */
     private void setStatusBarIconColor(Activity mActivity, boolean isDarkColor) {
@@ -138,7 +177,7 @@ public class StatusBarUtils {
      * <p>
      * 解决：全屏时，由于视图布局会填充到状态栏和导航栏下方，如果不使用android:fitsSystemWindows=”true”属性，就会使底部导航栏和应用底部按钮重叠，导视按钮点击失效。
      *
-     * @param mActivity
+     * @param mActivity Activity窗口界面
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void handlerNavigationBar(Activity mActivity) {
