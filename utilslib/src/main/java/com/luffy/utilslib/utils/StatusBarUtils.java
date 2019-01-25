@@ -85,7 +85,7 @@ public class StatusBarUtils {
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
             //设置状态栏颜色
-            setStatusBarColor(mActivity, colorId);
+            mActivity.getWindow().setStatusBarColor(mActivity.getResources().getColor(colorId));
         }
         /*4.4到5.0*/
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -134,19 +134,6 @@ public class StatusBarUtils {
             setStatusBarIconColor(mActivity, isDarkColor);
         }
 
-    }
-
-    /**
-     * 设置状态栏颜色
-     *
-     * @param mActivity Activity窗口界面
-     * @param colorId
-     */
-    private void setStatusBarColor(Activity mActivity, int colorId) {
-        /*5.0及以上*/
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mActivity.getWindow().setStatusBarColor(mActivity.getResources().getColor(colorId));
-        }
     }
 
     /**
