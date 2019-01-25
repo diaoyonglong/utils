@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,15 +77,33 @@ public class StatusBarUtils {
      *
      * @param mActivity
      * @param colorId
+     * @param isDarkColor
      */
     public void setStatusBar(Activity mActivity, int colorId, boolean isDarkColor) {
+        setStatusBar(mActivity, colorId, isDarkColor, false);
+    }
+
+    /**
+     * 设置状态栏
+     *
+     * @param mActivity
+     * @param colorId
+     * @param isDarkColor
+     * @param isDrawable
+     */
+    public void setStatusBar(Activity mActivity, int colorId, boolean isDarkColor, boolean isDrawable) {
         /*5.0及以上*/
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             View decorView = mActivity.getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
             //设置状态栏颜色
-            setStatusBarColor(mActivity, colorId);
+            if (isDrawable) {
+                decorView.setBackground(ContextCompat.getDrawable(mActivity, colorId));
+            } else {
+                decorView.setBackgroundColor(ContextCompat.getColor(mActivity, colorId));
+//                setStatusBarColor(mActivity, colorId);
+            }
         }
         /*4.4到5.0*/
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
