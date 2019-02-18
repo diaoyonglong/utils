@@ -9,6 +9,9 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.3.1'
         /**github*/
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        /**butterknife*/
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
     }
 }
 
