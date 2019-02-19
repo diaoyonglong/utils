@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.luffy.utilslib.utils.DoubleClickExitUtils;
 import com.luffy.utilslib.utils.FileConversionUtils;
 import com.luffy.utilslib.utils.FileStorageUtils;
+import com.luffy.utilslib.utils.IconColourUtils;
 import com.luffy.utilslib.utils.ScreenShotUtils;
 
 import butterknife.BindView;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout item3;
     @BindView(R.id.item_4)
     LinearLayout item4;
+    @BindView(R.id.imageView_4)
+    ImageView imageView4;
     @BindView(R.id.item_5)
     LinearLayout item5;
     @BindView(R.id.item_6)
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout item14;
     @BindView(R.id.item_15)
     LinearLayout item15;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             FileConversionUtils.getInstance().bitmap2File(bitmap, FileStorageUtils.getInstance().getExternalCachePath(this), "ScrollView截屏.png");
 
         } else if (i == R.id.item_4) {
+            IconColourUtils.getInstance().setImageViewColor(imageView4, R.color.colorAccent);
         } else if (i == R.id.item_5) {
         } else if (i == R.id.item_6) {
         } else if (i == R.id.item_7) {
