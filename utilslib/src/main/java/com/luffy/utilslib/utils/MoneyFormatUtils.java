@@ -33,4 +33,15 @@ public class MoneyFormatUtils {
     public String doubleToString(double money) {
         return new DecimalFormat("0.00").format(money);
     }
+
+    /**
+     * double转String,保留小数点后几位，自己定义
+     *
+     * @param money
+     * @param pattern 模式
+     * @return
+     */
+    public String doubleToString(double money, String pattern) {
+        return new DecimalFormat(pattern).format(money);
+    }
 }
