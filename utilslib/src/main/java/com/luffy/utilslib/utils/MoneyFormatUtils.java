@@ -1,5 +1,6 @@
 package com.luffy.utilslib.utils;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -25,23 +26,53 @@ public class MoneyFormatUtils {
     }
 
     /**
-     * double转String,保留小数点后两位
+     * double转String,保留小数点后两位（四舍五入）
      *
      * @param money
      * @return
      */
     public String doubleToString(double money) {
-        return new DecimalFormat("0.00").format(money);
+        DecimalFormat mDecimalFormat = new DecimalFormat("0.00");
+        mDecimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        return mDecimalFormat.format(money);
     }
 
     /**
-     * double转String,保留小数点后几位，自己定义
+     * double转String,保留小数点后几位，自己定义（四舍五入）
      *
      * @param money
      * @param pattern 模式
      * @return
      */
     public String doubleToString(double money, String pattern) {
-        return new DecimalFormat(pattern).format(money);
+        DecimalFormat mDecimalFormat = new DecimalFormat(pattern);
+        mDecimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        return mDecimalFormat.format(money);
+    }
+
+
+    /**
+     * double转String,保留小数点后两位（不四舍五入）
+     *
+     * @param money
+     * @return
+     */
+    public String doubleToStringRoundingNo(double money) {
+        DecimalFormat mDecimalFormat = new DecimalFormat("0.00");
+        mDecimalFormat.setRoundingMode(RoundingMode.FLOOR);
+        return mDecimalFormat.format(money);
+    }
+
+    /**
+     * double转String,保留小数点后几位，自己定义（不四舍五入）
+     *
+     * @param money
+     * @param pattern 模式
+     * @return
+     */
+    public String doubleToStringRoundingNo(double money, String pattern) {
+        DecimalFormat mDecimalFormat = new DecimalFormat(pattern);
+        mDecimalFormat.setRoundingMode(RoundingMode.FLOOR);
+        return mDecimalFormat.format(money);
     }
 }

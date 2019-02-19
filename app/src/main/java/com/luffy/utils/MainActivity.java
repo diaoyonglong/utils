@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             IconColourUtils.getInstance().setImageViewColor(imageView4, R.color.colorAccent);
 
         } else if (i == R.id.item_5) {
-            Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToString(0.166), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToStringRoundingNo(0.166), Toast.LENGTH_SHORT).show();
 
         } else if (i == R.id.item_6) {
         } else if (i == R.id.item_7) {
