@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.luffy.utilslib.utils.DoubleClickExitUtils;
 import com.luffy.utilslib.utils.FileConversionUtils;
 import com.luffy.utilslib.utils.FileStorageUtils;
 import com.luffy.utilslib.utils.IconColourUtils;
+import com.luffy.utilslib.utils.MoneyFormatUtils;
 import com.luffy.utilslib.utils.ScreenShotUtils;
 
 import butterknife.BindView;
@@ -103,7 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (i == R.id.item_4) {
             IconColourUtils.getInstance().setImageViewColor(imageView4, R.color.colorAccent);
+
         } else if (i == R.id.item_5) {
+            Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToString(0.166), Toast.LENGTH_SHORT).show();
+
         } else if (i == R.id.item_6) {
         } else if (i == R.id.item_7) {
         } else if (i == R.id.item_8) {

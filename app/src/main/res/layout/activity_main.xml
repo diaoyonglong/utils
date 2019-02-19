@@ -113,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="截屏" />
+                android:text="金额转换" />
 
             <View
                 android:layout_width="match_parent"
