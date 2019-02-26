@@ -35,11 +35,12 @@ public class RxTimerUtils {
     /**
      * 指定毫秒后执行next操作
      *
-     * @param milliseconds
+     * @param delay 延时
+     * @param unit  时间单位
      * @param next
      */
-    public void timer(long milliseconds, final IRxNext next) {
-        Observable.timer(milliseconds, TimeUnit.MILLISECONDS)
+    public void timer(long delay, TimeUnit unit, final IRxNext next) {
+        Observable.timer(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
@@ -71,11 +72,12 @@ public class RxTimerUtils {
     /**
      * 每隔指定毫秒后执行next操作
      *
-     * @param milliseconds
+     * @param delay 延时
+     * @param unit  时间单位
      * @param next
      */
-    public void interval(long milliseconds, final IRxNext next) {
-        Observable.interval(milliseconds, TimeUnit.MILLISECONDS)
+    public void interval(long delay, TimeUnit unit, final IRxNext next) {
+        Observable.interval(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
