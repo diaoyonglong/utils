@@ -102,12 +102,18 @@ public class RxTimerUtils {
                 });
     }
 
+    /**
+     * 取消订阅
+     */
     public void cancel() {
         if (mDisposable != null && !mDisposable.isDisposed()) {
             mDisposable.dispose();
         }
     }
 
+    /**
+     * 执行回调
+     */
     public interface IRxNext {
         void doNext(long number);
     }
