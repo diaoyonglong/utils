@@ -2,8 +2,10 @@ package com.luffy.utilslib.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 
 import java.util.List;
 
@@ -67,6 +69,44 @@ public class AppUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 获取用程序名称-通过包名
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public String getAppName(Context context, String packageName) {
+        String appName = null;
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            appName = packageManager.getApplicationLabel(applicationInfo).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return appName;
+    }
+
+    /**
+     * 获取用程序图标-通过包名
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public Drawable getAppIcon(Context context, String packageName) {
+        Drawable appIcon = null;
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            appIcon = packageManager.getApplicationIcon(applicationInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return appIcon;
     }
 
     /**

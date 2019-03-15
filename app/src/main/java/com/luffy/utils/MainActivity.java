@@ -1,5 +1,6 @@
 package com.luffy.utils;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -110,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToStringRoundingNo(0.166), Toast.LENGTH_SHORT).show();
 
         } else if (i == R.id.item_6) {
+            Intent intent = new Intent(this, AppActivity.class);
+            startActivity(intent);
+
         } else if (i == R.id.item_7) {
         } else if (i == R.id.item_8) {
         } else if (i == R.id.item_9) {
