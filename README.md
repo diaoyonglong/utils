@@ -51,4 +51,5 @@ dependencies {
 }
 
 ## 录屏
+![2j4rn-tafi3](https://user-images.githubusercontent.com/34730376/56351016-b2bf9c00-61fe-11e9-85f6-93875c364620.gif)
 
