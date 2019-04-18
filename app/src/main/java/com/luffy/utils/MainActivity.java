@@ -40,24 +40,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout item5;
     @BindView(R.id.item_6)
     LinearLayout item6;
-    @BindView(R.id.item_7)
-    LinearLayout item7;
-    @BindView(R.id.item_8)
-    LinearLayout item8;
-    @BindView(R.id.item_9)
-    LinearLayout item9;
-    @BindView(R.id.item_10)
-    LinearLayout item10;
-    @BindView(R.id.item_11)
-    LinearLayout item11;
-    @BindView(R.id.item_12)
-    LinearLayout item12;
-    @BindView(R.id.item_13)
-    LinearLayout item13;
-    @BindView(R.id.item_14)
-    LinearLayout item14;
-    @BindView(R.id.item_15)
-    LinearLayout item15;
 
 
     @Override
@@ -80,16 +62,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.item_3,
             R.id.item_4,
             R.id.item_5,
-            R.id.item_6,
-            R.id.item_7,
-            R.id.item_8,
-            R.id.item_9,
-            R.id.item_10,
-            R.id.item_11,
-            R.id.item_12,
-            R.id.item_13,
-            R.id.item_14,
-            R.id.item_15})
+            R.id.item_6})
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.item_1) {
@@ -114,15 +87,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AppActivity.class);
             startActivity(intent);
 
-        } else if (i == R.id.item_7) {
-        } else if (i == R.id.item_8) {
-        } else if (i == R.id.item_9) {
-        } else if (i == R.id.item_10) {
-        } else if (i == R.id.item_11) {
-        } else if (i == R.id.item_12) {
-        } else if (i == R.id.item_13) {
-        } else if (i == R.id.item_14) {
-        } else if (i == R.id.item_15) {
         }
     }
 }
