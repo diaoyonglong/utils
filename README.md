@@ -1,7 +1,7 @@
 # utils
 工具lib库
 
-gradle使用：
+## gradle使用：
 
 一、Project下的build.gradle文件下添加
 
@@ -24,9 +24,9 @@ dependencies {
 	        implementation 'com.github.Lvluffy:utils:1.0.8'
 }
 
-三、混淆文件
+## 混淆文件
 
-# RxJava RxAndroid
+### RxJava RxAndroid
 
 -dontwarn sun.misc.**
 
@@ -49,3 +49,6 @@ dependencies {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
     
 }
+
+## 录屏
+
